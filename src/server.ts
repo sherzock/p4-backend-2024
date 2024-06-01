@@ -10,7 +10,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.get("/", async (req, res) => {
-    res.status(200).json({ok: true, message: "Hello"});
+    res.status(200).json({ok: true, message: "HELLO"});
 })
 
 

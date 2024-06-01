@@ -9,3 +9,66 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+//datasource db {
+//  provider = "postgres"
+//  url      = "postgresql://fullstack:fullstack123@localhost:5432/playground"//env("DATABASE_URL")
+//}
+
+model Student {
+  idPerson  Int       @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String    @unique
+  birthdate DateTime?
+  enrollments   Enrollment[] @relation("StudentEnrollments")
+}
+
+model Teacher {
+  idPerson  Int       @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String    @unique
+  birthdate DateTime?
+  coursesTaught Course[] @relation("TeacherCourses")
+}
+
+model Course {
+  idCourse  Int @id @default(autoincrement())
+  name      String
+  code      String @unique //Abbreviaton
+  description String?
+  courseTeacher Teacher  @relation("TeacherCourses", fields: [teacherId], references: [idPerson])
+  teacherId Int
+  classroom Classroom @relation(fields: [classromId], references: [idClassroom])
+  classromId  Int
+  enrollments Enrollment[]
+}
+
+model Classroom {
+  idClassroom      Int @id @default(autoincrement())
+  name             String
+  capacity         Int? //Capacity is optional because it can be a virtual classroom
+  location         String? //Location is optional because it can be a virtual classroom
+  url              String? // For online classrooms
+  courses          Course[]
+}
+
+model Enrollment {
+  idEnrollment  Int @id @default(autoincrement())
+  student       Student    @relation("StudentEnrollments", fields: [studentId], references: [idPerson])
+  studentId     Int
+  course        Course    @relation(fields: [courseId], references: [idCourse])
+  courseId      Int
+  enrolledAt    DateTime  @default(now())
+  grades        Grade[]   @relation("EnrollmentGrades")
+}
+
+model Grade {
+  idGrade     Int   @id @default(autoincrement())
+  name        String
+  enrollment  Enrollment @relation("EnrollmentGrades", fields: [enrollmentId], references: [idEnrollment])
+  enrollmentId Int
+  grade        Float
+  gradedAt     DateTime @default(now())
+}

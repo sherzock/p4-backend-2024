@@ -11,13 +11,17 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.get("/courses", async (req, res) => {
+    try{
+            const Courses = await db.course.findMany({
+                orderBy: {name: "asc"},
+            });
 
-        const Courses = await db.course.findMany({
-            orderBy: {name: "asc"},
-        });
-
-    res.status(200).json(Courses);
-});
+        res.status(200).json(Courses);
+    } catch (e) {
+        res.status(500).json({ error: "Internal Error" });
+        }
+    }
+);
 
 
 const { PORT } = process.env;

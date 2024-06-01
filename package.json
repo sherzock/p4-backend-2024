@@ -2,6 +2,10 @@
   "name": "p4-backend",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "dev": "bun src/server.ts",
+    "start": "NODE_ENV=production bun src/server.ts"
+  },
   "prisma": {
     "seed": "bun prisma/seed.ts"
   },

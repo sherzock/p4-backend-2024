@@ -47,4 +47,16 @@ coursesRouter.put("/:id", catchErrors(async (req, res) => {
     send(res).ok(updateCourse);
 }));
 
+//Commenting delete courses as it shouldn't be able to delete any course, Important data would be lost, like students grades, enrollments, etc
+// Also, it shouldn't work correctly unless it has no enrollments
+
+/*
+coursesRouter.delete("/:id", catchErrors(async (req, res) => {
+  const { id: idCourse } = idParamSchema.parse(req.params);
+  const deleteCourse = await db.course.delete({ where: { idCourse }});
+  send(res).ok(deleteCourse);
+}));
+*/
+
+
 export default coursesRouter;

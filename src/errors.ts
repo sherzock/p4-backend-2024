@@ -14,6 +14,9 @@ const zodErrorMessage = (err: ZodError): string => {
       case "too_small": {
         return `${path[0]} is too small.`;
       }
+      case "too_big": {
+        return `${path[0]} is too big.`;
+      }
       default: {
         return `Input data is wrong.`;
       }

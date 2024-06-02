@@ -1,0 +1,559 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "School Management",
+    "collectionId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+    "dateExported": "2024-06-02T18:42:17.186Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "cc0eed6b-ffdf-4b12-9e3f-1cc679d8313b",
+            "name": "Courses",
+            "containerId": "",
+            "created": "2024-06-02T16:05:29.605Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "3be986b7-3d44-45f8-ac60-0cc220602140",
+            "name": "Students",
+            "containerId": "",
+            "created": "2024-06-02T16:05:51.270Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "7b0643c4-2ff7-46ff-890f-e52b7c706ee2",
+            "name": "Teachers",
+            "containerId": "",
+            "created": "2024-06-02T16:06:11.341Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "3e784b4b-1aa3-41ea-89fc-bd68e567d716",
+            "name": "Classrooms",
+            "containerId": "",
+            "created": "2024-06-02T16:14:22.036Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "8c42af54-dc85-492d-914c-13a0f5addc8a",
+            "name": "Grades",
+            "containerId": "",
+            "created": "2024-06-02T16:34:51.054Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "5a8ae966-7678-4399-b242-c2a9d563ad83",
+            "name": "Enrollments",
+            "containerId": "",
+            "created": "2024-06-02T16:35:03.232Z",
+            "sortNum": 60000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "7598520b-443b-469c-a10f-a9a2afb25910",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "7b0643c4-2ff7-46ff-890f-e52b7c706ee2",
+            "name": "Get Teachers",
+            "url": "/teachers?lastName=Granger",
+            "method": "GET",
+            "sortNum": 5000,
+            "created": "2024-06-02T16:03:52.063Z",
+            "modified": "2024-06-02T18:42:01.596Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "firstName",
+                    "value": "Harry",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "lastName",
+                    "value": "Granger",
+                    "isPath": false
+                },
+                {
+                    "name": "email",
+                    "value": "ronald.weasly@test.com",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "d771051d-e639-4327-b51a-06ebaa9d9776",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "cc0eed6b-ffdf-4b12-9e3f-1cc679d8313b",
+            "name": "Get Courses",
+            "url": "/courses?teacherId=1",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-06-01T21:16:32.168Z",
+            "modified": "2024-06-02T18:28:30.049Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "AI Development",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "code",
+                    "value": "AI",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "classromId",
+                    "value": "2",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "teacherId",
+                    "value": "1",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "0632c71a-0016-487d-8c09-fdbe257ca8a8",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "3be986b7-3d44-45f8-ac60-0cc220602140",
+            "name": "Get Students",
+            "url": "/students",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-06-02T15:36:59.368Z",
+            "modified": "2024-06-02T18:38:14.555Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "firstName",
+                    "value": "Belladonna",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "lastName",
+                    "value": "Baggins",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "email",
+                    "value": "boromir.sonofdebethor@test.com",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "beccb116-7c28-4eeb-a1c5-cfbc4354e89a",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "7b0643c4-2ff7-46ff-890f-e52b7c706ee2",
+            "name": "Create a new Teacher",
+            "url": "/teachers",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-06-02T16:05:13.663Z",
+            "modified": "2024-06-02T16:10:32.625Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"firstName\": \"Linus\",\n    \"lastName\": \"Tovalds\",\n    \"email\": \"linus.tovalds@test.com\",\n    \"birthdate\": \"2018-10-21T11:53:12-07:00\"\n }",
+                "form": []
+            }
+        },
+        {
+            "_id": "f2f66888-9d1d-4079-b8b8-c413a3d5a775",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "cc0eed6b-ffdf-4b12-9e3f-1cc679d8313b",
+            "name": "Create a  new Course",
+            "url": "/courses",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-06-01T22:21:59.314Z",
+            "modified": "2024-06-02T15:13:32.923Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"aaaaaa\",\n  \"code\": \"cld\",\n  \"description\": \"wawqidwqhidfwuhgie\",\n  \"teacherId\": 2,\n  \"classromId\": 2\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "100ee73e-38d4-42a8-8c2c-821fd8fa998f",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "3be986b7-3d44-45f8-ac60-0cc220602140",
+            "name": "Create a new Student",
+            "url": "/students",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-06-02T15:38:52.521Z",
+            "modified": "2024-06-02T15:41:43.716Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"firstName\": \"Fullstackio\",\n    \"lastName\": \"Backendo\",\n    \"email\": \"fullstackio.backendo@test.com\",\n    \"birthdate\": \"2018-10-21T11:53:12-07:00\"\n  }",
+                "form": []
+            }
+        },
+        {
+            "_id": "9ddcdbd4-2455-4815-b61c-e253788049ad",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "cc0eed6b-ffdf-4b12-9e3f-1cc679d8313b",
+            "name": "Get Course by id",
+            "url": "/courses/2",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-06-01T22:48:48.251Z",
+            "modified": "2024-06-02T10:27:09.366Z",
+            "headers": []
+        },
+        {
+            "_id": "86e5b49f-e3cf-4630-83fd-45c4e6f0ec5e",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "3be986b7-3d44-45f8-ac60-0cc220602140",
+            "name": "Get Student by id",
+            "url": "/students/1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-06-02T15:42:27.916Z",
+            "modified": "2024-06-02T15:43:38.610Z",
+            "headers": []
+        },
+        {
+            "_id": "5d4f9b57-b7b6-45f5-8c3e-c74713dd5249",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "cc0eed6b-ffdf-4b12-9e3f-1cc679d8313b",
+            "name": "Update Course Info",
+            "url": "/courses/2",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-06-02T10:48:23.266Z",
+            "modified": "2024-06-02T10:50:34.171Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"BackEnd\",\n  \"description\": \"Learning.\",\n  \"teacherId\":3,\n  \"classromId\": 1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "a4e18fbb-d846-4ffb-ab74-af76ba0cf9ce",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "3be986b7-3d44-45f8-ac60-0cc220602140",
+            "name": "Update Student info",
+            "url": "/students/1",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-06-02T15:43:18.729Z",
+            "modified": "2024-06-02T15:44:56.878Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"Jacobo\",\n  \"lastName\": \"Messi Ronaldo\",\n  \"email\": \"jacobo.messi@test.com\",\n  \"birthdate\": \"2018-10-21T11:53:12-07:00\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "3541866d-5b0a-43d4-882c-63c7293d2b00",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "cc0eed6b-ffdf-4b12-9e3f-1cc679d8313b",
+            "name": "Delete Course",
+            "url": "/cour",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-06-02T14:40:16.549Z",
+            "modified": "2024-06-02T15:19:40.895Z",
+            "headers": []
+        },
+        {
+            "_id": "2307e8f5-c3a7-458d-bbec-5d9ec153dcce",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "3be986b7-3d44-45f8-ac60-0cc220602140",
+            "name": "Delete Student",
+            "url": "/students/21",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-06-02T15:45:24.696Z",
+            "modified": "2024-06-02T15:46:00.478Z",
+            "headers": []
+        },
+        {
+            "_id": "2e9aad04-0b52-49d2-ad90-0937724be72d",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "7b0643c4-2ff7-46ff-890f-e52b7c706ee2",
+            "name": "Get Teacher by id",
+            "url": "/teachers/1",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2024-06-02T16:10:57.121Z",
+            "modified": "2024-06-02T16:11:19.957Z",
+            "headers": []
+        },
+        {
+            "_id": "02a8a3b1-c7ed-466d-b324-aa27cdafa0e4",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "7b0643c4-2ff7-46ff-890f-e52b7c706ee2",
+            "name": "Update Teacher info",
+            "url": "/teachers/1",
+            "method": "PUT",
+            "sortNum": 150000,
+            "created": "2024-06-02T16:11:46.873Z",
+            "modified": "2024-06-02T16:12:49.238Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"firstName\": \"Harry\",\n    \"lastName\": \"Potter\",\n    \"email\": \"harry.potter@test.com\",\n    \"birthdate\": \"2018-10-21T11:53:12-07:00\"\n  }",
+                "form": []
+            }
+        },
+        {
+            "_id": "59062295-4f4b-4d9f-ba27-6ed0734d9a03",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "7b0643c4-2ff7-46ff-890f-e52b7c706ee2",
+            "name": "Delete Teacher",
+            "url": "/teachers/6",
+            "method": "DELETE",
+            "sortNum": 160000,
+            "created": "2024-06-02T16:13:17.816Z",
+            "modified": "2024-06-02T16:13:44.482Z",
+            "headers": []
+        },
+        {
+            "_id": "f0e0e9be-c09c-4670-a528-1d468c294ab2",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "3e784b4b-1aa3-41ea-89fc-bd68e567d716",
+            "name": "Get Classrooms",
+            "url": "/classrooms?name=A1",
+            "method": "GET",
+            "sortNum": 170000,
+            "created": "2024-06-02T16:26:57.343Z",
+            "modified": "2024-06-02T18:10:53.855Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "A1",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "256862b2-8407-4dad-8ae8-b2c47b4d16f4",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "3e784b4b-1aa3-41ea-89fc-bd68e567d716",
+            "name": "Create new Classroom",
+            "url": "/classrooms",
+            "method": "POST",
+            "sortNum": 180000,
+            "created": "2024-06-02T16:27:25.178Z",
+            "modified": "2024-06-02T16:30:54.243Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"New Classroom\",\n  \"capacity\": \"20\",\n  \"location\": \"Mordor\",\n  \"url\": \"\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "096a455e-00de-494b-8e72-3f366e67bdc0",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "3e784b4b-1aa3-41ea-89fc-bd68e567d716",
+            "name": "Get Classroom by id",
+            "url": "/classrooms/2",
+            "method": "GET",
+            "sortNum": 190000,
+            "created": "2024-06-02T16:31:22.442Z",
+            "modified": "2024-06-02T16:31:34.437Z",
+            "headers": []
+        },
+        {
+            "_id": "706c1638-6144-4881-8252-4b579a72ff9b",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "3e784b4b-1aa3-41ea-89fc-bd68e567d716",
+            "name": "Update Classroom",
+            "url": "/classrooms/2",
+            "method": "PUT",
+            "sortNum": 200000,
+            "created": "2024-06-02T16:32:01.581Z",
+            "modified": "2024-06-02T16:32:41.731Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Updated Classroom\",\n  \"capacity\": \"20\",\n  \"location\": \"Mordor\",\n  \"url\": \"\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "32396d0e-3193-4511-aac6-5bbb8adfb881",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "3e784b4b-1aa3-41ea-89fc-bd68e567d716",
+            "name": "Delete Classroom",
+            "url": "/classrooms/7",
+            "method": "DELETE",
+            "sortNum": 210000,
+            "created": "2024-06-02T16:32:52.323Z",
+            "modified": "2024-06-02T16:33:32.648Z",
+            "headers": []
+        },
+        {
+            "_id": "2964a63a-a0fc-4b92-b708-ab888f5abf7a",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "5a8ae966-7678-4399-b242-c2a9d563ad83",
+            "name": "Get Enrollments",
+            "url": "/enrollments",
+            "method": "GET",
+            "sortNum": 230000,
+            "created": "2024-06-02T17:09:12.688Z",
+            "modified": "2024-06-02T18:32:55.265Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "studentId",
+                    "value": "1",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "courseId",
+                    "value": "1",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "e17cca33-45cc-4989-a886-e5bd90959db6",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "5a8ae966-7678-4399-b242-c2a9d563ad83",
+            "name": "Create new Enrollment",
+            "url": "/enrollments",
+            "method": "POST",
+            "sortNum": 240000,
+            "created": "2024-06-02T17:11:44.047Z",
+            "modified": "2024-06-02T17:15:08.429Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "  {\n    \"studentId\": 20,\n    \"courseId\": 9,\n    \"enrolledAt\": \"2018-10-21T11:53:12-07:00\"\n  }",
+                "form": []
+            }
+        },
+        {
+            "_id": "fbcc659e-7333-4d80-baae-ab7c5317f7b4",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "5a8ae966-7678-4399-b242-c2a9d563ad83",
+            "name": "Get enrollment by id",
+            "url": "/enrollments/1",
+            "method": "GET",
+            "sortNum": 250000,
+            "created": "2024-06-02T17:15:31.518Z",
+            "modified": "2024-06-02T17:15:41.169Z",
+            "headers": []
+        },
+        {
+            "_id": "01f201b5-75c4-4f13-8ead-665bf58d94e5",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "5a8ae966-7678-4399-b242-c2a9d563ad83",
+            "name": "Delete Enrollment",
+            "url": "/enrollments/2",
+            "method": "DELETE",
+            "sortNum": 260000,
+            "created": "2024-06-02T17:23:57.106Z",
+            "modified": "2024-06-02T17:25:14.034Z",
+            "headers": []
+        },
+        {
+            "_id": "5d61c407-70ae-4054-a92e-f248fe296bef",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "8c42af54-dc85-492d-914c-13a0f5addc8a",
+            "name": "Get Grades",
+            "url": "/grades?name=Exam&enrollment=20",
+            "method": "GET",
+            "sortNum": 270000,
+            "created": "2024-06-02T17:37:52.996Z",
+            "modified": "2024-06-02T18:07:14.366Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "Exam",
+                    "isPath": false
+                },
+                {
+                    "name": "enrollment",
+                    "value": "20",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "e8c2a99b-b090-436c-9fab-9c44cc14ae5a",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "8c42af54-dc85-492d-914c-13a0f5addc8a",
+            "name": "Create new Grade",
+            "url": "/grades",
+            "method": "POST",
+            "sortNum": 280000,
+            "created": "2024-06-02T17:39:11.701Z",
+            "modified": "2024-06-02T17:59:42.372Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "  {\n    \"name\": \"Exam\",\n    \"enrollmentId\": 31,\n    \"grade\": 5,\n    \"gradedAt\": \"2024-06-01T13:03:06.424Z\"\n  }",
+                "form": []
+            }
+        },
+        {
+            "_id": "1038d6f6-19a3-4151-90de-5de25211d3cd",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "8c42af54-dc85-492d-914c-13a0f5addc8a",
+            "name": "Get Grade by id",
+            "url": "/grades/1",
+            "method": "GET",
+            "sortNum": 290000,
+            "created": "2024-06-02T17:40:33.517Z",
+            "modified": "2024-06-02T17:40:41.147Z",
+            "headers": []
+        },
+        {
+            "_id": "ed9094c5-2f8c-4fc2-83f2-3782ab831551",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "8c42af54-dc85-492d-914c-13a0f5addc8a",
+            "name": "Update Grade",
+            "url": "/grades/1",
+            "method": "PUT",
+            "sortNum": 300000,
+            "created": "2024-06-02T17:40:52.870Z",
+            "modified": "2024-06-02T17:41:13.143Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "  {\n    \"name\": \" Exam\",\n    \"enrollmentId\": 20,\n    \"grade\": 5,\n    \"gradedAt\": \"2024-06-01T13:03:06.424Z\"\n  }",
+                "form": []
+            }
+        },
+        {
+            "_id": "3b33890e-1d0c-4b8a-9a23-8b42c6db569e",
+            "colId": "0f56122a-8671-45ce-bee0-32c11b34f8aa",
+            "containerId": "8c42af54-dc85-492d-914c-13a0f5addc8a",
+            "name": "Delete Grade",
+            "url": "/grades/2",
+            "method": "DELETE",
+            "sortNum": 310000,
+            "created": "2024-06-02T17:41:23.526Z",
+            "modified": "2024-06-02T17:41:51.529Z",
+            "headers": []
+        }
+    ],
+    "settings": {
+        "options": {
+            "baseUrl": "http://localhost:8888"
+        }
+    },
+    "ref": "O4l-yzQT2fxmU2xlkMqDsmYz4DhFzGBYs5ERwP4EO3DjGILbZh2DC6J-BYdkUEbFY8R4Pm7bljDLpBVpyzL7ug"
+}

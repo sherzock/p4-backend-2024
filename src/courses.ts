@@ -2,6 +2,7 @@ import { Router } from "express";
 import { db } from "./db";
 import { send } from "./response";
 import { z } from "zod";
+import { catchErrors } from "./errors";
 
 const coursesRouter = Router();
 
@@ -16,56 +17,34 @@ const courseBodySchema = z.object({
   classromId: z.coerce.number(),
 })
 
-coursesRouter.get("/", async (req, res, next) => {
-  try {
+coursesRouter.get("/", catchErrors(async (req, res) => {
     const courses = await db.course.findMany({
       orderBy: { name: "asc" },
     });
 
     send(res).ok(courses);
-  } catch (e) {
-    next(e);
-  }
-});
+}));
 
-coursesRouter.post("/", async (req, res, next) => {
-  try {
+coursesRouter.post("/", catchErrors(async (req, res) => {
     const data = courseBodySchema.parse(req.body);
     const course = await db.course.create({ data });
     send(res).Created(course);
-  } catch (e) {
-    console.error(e);
-    next(e);
-  }
-});
+}));
 
-coursesRouter.get("/:id", async (req, res, next) => {
-  try {
+coursesRouter.get("/:id", catchErrors(async (req, res) => {
     const { id: idCourse } = idParamSchema.parse(req.params);
-
     const course = await db.course.findUniqueOrThrow({
       where: { idCourse } ,
     });
-
     send(res).ok(course);
-  } catch (e: any) {
-    next(e);
-  }
-});
+}));
 
 
-coursesRouter.put("/:id", async (req, res, next) => {
-  try {
+coursesRouter.put("/:id", catchErrors(async (req, res) => {
     const { id: idCourse } = idParamSchema.parse(req.params);
     const CourseData = courseBodySchema.parse(req.body);
-
     const updateCourse = await db.course.update({ where: { idCourse }, data: CourseData });
-
     send(res).ok(updateCourse);
-
-  } catch(e) {
-    next(e);
-}
-})
+}));
 
 export default coursesRouter;

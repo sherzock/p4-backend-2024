@@ -12,7 +12,7 @@ generator client {
 
 datasource db {
   provider = "postgres"
-  url      = "postgresql://fullstack:fullstack123@localhost:5432/playground"//env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 model Student {

@@ -19,11 +19,46 @@ const courseBodySchema = z.object({
 })
 
 coursesRouter.get("/", catchErrors(async (req, res) => {
-    const courses = await db.course.findMany({
-      orderBy: { name: "asc" },
-    });
+    
+    if(req.query.name) {
+      const courses = await db.course.findMany({
+        where: {name: String(req.query.name)}, orderBy: { name: "asc" },
+      });
+  
+      send(res).ok(courses);
 
-    send(res).ok(courses);
+    } else if(req.query.code) {
+      const courses = await db.course.findMany({
+        where: {code: String(req.query.code)}, orderBy: { name: "asc" },
+      });
+  
+      send(res).ok(courses);
+
+    } 
+    else if(req.query.teacherId) {
+      const courses = await db.course.findMany({
+        where: {teacherId: Number(req.query.teacherId)}, orderBy: { name: "asc" },
+      });
+
+      send(res).ok(courses);
+
+    } 
+    else if(req.query.classromId) {
+      const courses = await db.course.findMany({
+        where: {classromId: Number(req.query.classromId)}, orderBy: { name: "asc" },
+      });
+
+      send(res).ok(courses);
+
+    }
+    else {
+      const courses = await db.course.findMany({
+        orderBy: { name: "asc" },
+      });
+  
+      send(res).ok(courses);
+
+    }
 }));
 
 coursesRouter.post("/", catchErrors(async (req, res) => {

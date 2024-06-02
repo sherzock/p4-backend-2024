@@ -42,6 +42,14 @@ gradesRouter.get("/", catchErrors(async (req, res) => {
 
         send(res).ok(grades);
     }
+    else if(req.query.enrollment) {
+        const grades = await db.grade.findMany({
+            where: {enrollmentId: Number(req.query.enrollment)},
+            orderBy: { name: "asc" },
+            });
+
+        send(res).ok(grades);
+    }
     else {
         const grades = await db.grade.findMany({
             orderBy: { name: "asc" },

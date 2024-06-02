@@ -30,9 +30,22 @@ export const defaultErrorHandler: ErrorRequestHandler = (err, req, res ,next) =>
             return send(res).NotFound('Not Found');
         }
         case "ZodError": {
+            console.error(err);
             return send(res).BadRequest(zodErrorMessage(err));
         }
+        case "PrismaClientKnownRequestError": {
+            console.error(err);
+            switch(err.code) {
+                case "P2002": {
+                    return send(res).BadRequest(` The field "${err.meta.target}" must be unique`);
+                }
+                default: {
+                    return send(res).BadRequest(' Internal Error ');
+                }
+            }
+        }
         default: {
+            console.error(err);
             send(res).InternalError("Internal Error");
         }
     }

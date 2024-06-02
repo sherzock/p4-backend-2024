@@ -13,6 +13,7 @@ const idParamSchema = z.object({
 const courseBodySchema = z.object({
   name: z.coerce.string().min(5).max(50),
   code: z.coerce.string().min(3).max(3),
+  description: z.coerce.string().max(400),
   teacherId: z.coerce.number(),
   classromId: z.coerce.number(),
 })

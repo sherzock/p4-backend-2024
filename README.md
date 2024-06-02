@@ -3,6 +3,8 @@
 Backend implementation of a school management system using an Express server to create the API and a Database based in Postgres.
 Implementacion backend de un sistema de organización para una escuela o universidad. Se ha usado Express para crear el servidor de la api y una base de datos basada en Postgres.
 
+La base de datos tiene las siguientes tablas: Estudiantes, Profesores, Clases, Cursos, Aulas y Notas.
+
 # Como poner en marcha la base de datos
 
 Al descargar el proyecto, lo primero que debemos hacer es generar el container de docker. Desde la carpeta /Docker debemos hacer:
@@ -182,6 +184,9 @@ DELETE: http://localhost:8888/grades/id
 El id de la nota se ha de substituir. 
 Si la nota tiene notas añadidas, no podra ser borrada.
 
+# Entregable
+
+En el zip del campus se ha añadido el .env con la url de postgres y el puerto por defecto del servidor.
 
 
 # Enunciado Original del Trabajo

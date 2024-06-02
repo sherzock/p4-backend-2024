@@ -18,11 +18,21 @@ const classroomsBodySchema = z.object({
 })
 
 classroomsRouter.get("/", catchErrors(async (req, res) => {
-    const classroom = await db.classroom.findMany({
-      orderBy: { name: "asc" },
-    });
+    if(req.query.name){
+      const classroom = await db.classroom.findMany({
+        where: {name: String(req.query.name)}, orderBy: { name: "asc" },
+      });
 
-    send(res).ok(classroom);
+      send(res).ok(classroom);
+    }
+    else {
+      const classroom = await db.classroom.findMany({
+        orderBy: { name: "asc" },
+      });
+      
+      send(res).ok(classroom);
+    }
+
 }));
 
 classroomsRouter.post("/", catchErrors(async (req, res) => {

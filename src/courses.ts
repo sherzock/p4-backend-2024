@@ -1,8 +1,20 @@
 import { Router } from "express";
 import { db } from "./db";
 import { send } from "./response";
+import { z } from "zod";
 
 const coursesRouter = Router();
+
+const idParamSchema = z.object({
+  id:  z.coerce.number(),
+});
+
+const courseBodySchema = z.object({
+  name: z.coerce.string(),
+  code: z.coerce.string(),
+  teacherId: z.coerce.number(),
+  classromId: z.coerce.number(),
+})
 
 coursesRouter.get("/", async (req, res) => {
   try {
@@ -18,19 +30,8 @@ coursesRouter.get("/", async (req, res) => {
 
 coursesRouter.post("/", async (req, res) => {
   try {
-    const { name, code, teacherId, classId } = req.body;
-
-    if (name === undefined || typeof name !== "string") {
-      send(res).BadRequest( "Missing `name` field " );
-    }
-    const course = await db.course.create({
-      data: {
-        name: name,
-        code: code,
-        teacherId: teacherId,
-        classromId: classId,
-      },
-    });
+    const data = courseBodySchema.parse(req.body);
+    const course = await db.course.create({ data });
     send(res).Created(course);
   } catch (e) {
     console.error(e);
@@ -40,10 +41,10 @@ coursesRouter.post("/", async (req, res) => {
 
 coursesRouter.get("/:id", async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id: idCourse } = idParamSchema.parse(req.params);
 
     const course = await db.course.findUniqueOrThrow({
-      where: { idCourse: Number(id) },
+      where: { idCourse } ,
     });
 
     send(res).ok(course);
@@ -54,5 +55,20 @@ coursesRouter.get("/:id", async (req, res) => {
     send(res).InternalError(`Internal error.` );
   }
 });
+
+
+coursesRouter.put("/:id", async (req, res) => {
+  try {
+    const { id: idCourse } = idParamSchema.parse(req.params);
+    const CourseData = courseBodySchema.parse(req.body);
+
+    const updateCourse = await db.course.update({ where: { idCourse }, data: CourseData });
+
+    send(res).ok(updateCourse);
+
+  } catch(e) {
+
+}
+})
 
 export default coursesRouter;

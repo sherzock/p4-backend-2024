@@ -10,13 +10,13 @@ const idParamSchema = z.object({
 });
 
 const courseBodySchema = z.object({
-  name: z.coerce.string(),
-  code: z.coerce.string(),
+  name: z.coerce.string().min(5).max(50),
+  code: z.coerce.string().min(3).max(3),
   teacherId: z.coerce.number(),
   classromId: z.coerce.number(),
 })
 
-coursesRouter.get("/", async (req, res) => {
+coursesRouter.get("/", async (req, res, next) => {
   try {
     const courses = await db.course.findMany({
       orderBy: { name: "asc" },
@@ -24,22 +24,22 @@ coursesRouter.get("/", async (req, res) => {
 
     send(res).ok(courses);
   } catch (e) {
-    send(res).InternalError( "Internal Error" );
+    next(e);
   }
 });
 
-coursesRouter.post("/", async (req, res) => {
+coursesRouter.post("/", async (req, res, next) => {
   try {
     const data = courseBodySchema.parse(req.body);
     const course = await db.course.create({ data });
     send(res).Created(course);
   } catch (e) {
     console.error(e);
-   send(res).InternalError( "Couldn't create Course, come back later..." );
+    next(e);
   }
 });
 
-coursesRouter.get("/:id", async (req, res) => {
+coursesRouter.get("/:id", async (req, res, next) => {
   try {
     const { id: idCourse } = idParamSchema.parse(req.params);
 
@@ -49,15 +49,12 @@ coursesRouter.get("/:id", async (req, res) => {
 
     send(res).ok(course);
   } catch (e: any) {
-    if (e.name === "NotFoundError") {
-      send(res).NotFound(`Course Not found`);
-    }
-    send(res).InternalError(`Internal error.` );
+    next(e);
   }
 });
 
 
-coursesRouter.put("/:id", async (req, res) => {
+coursesRouter.put("/:id", async (req, res, next) => {
   try {
     const { id: idCourse } = idParamSchema.parse(req.params);
     const CourseData = courseBodySchema.parse(req.body);
@@ -67,7 +64,7 @@ coursesRouter.put("/:id", async (req, res) => {
     send(res).ok(updateCourse);
 
   } catch(e) {
-
+    next(e);
 }
 })
 

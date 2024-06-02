@@ -18,11 +18,38 @@ const gradesBodySchema = z.object({
 })
 
 gradesRouter.get("/", catchErrors(async (req, res) => {
-    const grades = await db.grade.findMany({
-      orderBy: { name: "asc" },
-    });
+    if(req.query.name && req.query.enrollment) {
+        const grades = await db.grade.findMany({
+        where: {name: String(req.query.name), enrollmentId: Number(req.query.enrollment)},
+        orderBy: { name: "asc" },
+        });
 
-    send(res).ok(grades);
+        send(res).ok(grades);
+    }
+    else if(req.query.name) {
+        const grades = await db.grade.findMany({
+            where: {name: String(req.query.name)},
+            orderBy: { name: "asc" },
+            });
+
+        send(res).ok(grades);
+    }
+    else if(req.query.enrollment) {
+        const grades = await db.grade.findMany({
+            where: {enrollmentId: Number(req.query.enrollment)},
+            orderBy: { name: "asc" },
+            });
+
+        send(res).ok(grades);
+    }
+    else {
+        const grades = await db.grade.findMany({
+            orderBy: { name: "asc" },
+            });
+        
+        send(res).ok(grades);
+    }
+
 }));
 
 gradesRouter.post("/", catchErrors(async (req, res) => {

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { db } from "./db";
+import { send } from "./response";
 
 const coursesRouter = Router();
 
@@ -9,9 +10,9 @@ coursesRouter.get("/", async (req, res) => {
       orderBy: { name: "asc" },
     });
 
-    res.status(200).json(courses);
+    send(res).ok(courses);
   } catch (e) {
-    res.status(500).json({ error: "Internal Error" });
+    send(res).InternalError( "Internal Error" );
   }
 });
 
@@ -20,7 +21,7 @@ coursesRouter.post("/", async (req, res) => {
     const { name, code, teacherId, classId } = req.body;
 
     if (name === undefined || typeof name !== "string") {
-      return res.status(400).json({ error: "Missing `name` field " });
+      send(res).BadRequest( "Missing `name` field " );
     }
     const course = await db.course.create({
       data: {
@@ -30,12 +31,10 @@ coursesRouter.post("/", async (req, res) => {
         classromId: classId,
       },
     });
-    res.status(201).json(course);
+    send(res).Created(course);
   } catch (e) {
     console.error(e);
-    res
-      .status(500)
-      .json({ error: "Couldn't create Course, come back later..." });
+   send(res).InternalError( "Couldn't create Course, come back later..." );
   }
 });
 
@@ -47,14 +46,12 @@ coursesRouter.get("/:id", async (req, res) => {
       where: { idCourse: Number(id) },
     });
 
-    res.status(200).json(course);
+    send(res).ok(course);
   } catch (e: any) {
     if (e.name === "NotFoundError") {
-      return res.status(404).json({ message: `Not found.` });
+      send(res).NotFound(`Course Not found`);
     }
-    res
-      .status(500)
-      .json({ error: `Internal error.` });
+    send(res).InternalError(`Internal error.` );
   }
 });
 

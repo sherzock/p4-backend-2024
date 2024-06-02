@@ -5,6 +5,7 @@ import morgan from "morgan";
 
 import coursesRouter from "./courses";
 import studentsRouter from "./students";
+import teachersRouter from "./teachers";
 import { defaultErrorHandler } from "./errors";
 
 const app = express();
@@ -15,6 +16,8 @@ app.use(express.json());
 
 app.use("/courses", coursesRouter);
 app.use("/students", studentsRouter);
+app.use("/teachers", teachersRouter);
+
 
 app.use(defaultErrorHandler);
 

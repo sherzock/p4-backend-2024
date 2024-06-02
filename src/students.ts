@@ -51,8 +51,8 @@ studentsRouter.put("/:id", catchErrors(async (req, res) => {
 
 studentsRouter.delete("/:id", catchErrors(async (req, res) => {
   const { id: idPerson } = idParamSchema.parse(req.params);
-  const deleteCourse = await db.student.delete({ where: { idPerson }});
-  send(res).ok(deleteCourse);
+  const deleteTeacher = await db.student.delete({ where: { idPerson }});
+  send(res).ok(deleteTeacher);
 }));
 
 

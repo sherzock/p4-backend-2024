@@ -18,11 +18,33 @@ const teachersBodySchema = z.object({
 })
 
 teachersRouter.get("/", catchErrors(async (req, res) => {
-    const teachers = await db.teacher.findMany({
-      orderBy: { firstName: "asc" },
-    });
+    if(req.query.firstName) {
+      const teachers = await db.teacher.findMany({
+          where: {firstName: String(req.query.firstName)}, orderBy: { firstName: "asc" },
+        });
+    
+        send(res).ok(teachers);
 
-    send(res).ok(teachers);
+  } else if(req.query.lastName) {
+      const teachers = await db.teacher.findMany({
+          where: {lastName: String(req.query.lastName)}, orderBy: { firstName: "asc" },
+        });
+    
+        send(res).ok(teachers);
+
+  } else if(req.query.email) {
+      const teachers = await db.teacher.findMany({
+          where: {email: String(req.query.email)},orderBy: { firstName: "asc" },
+        });
+    
+        send(res).ok(teachers);
+  } else {
+      const teachers = await db.teacher.findMany({
+          orderBy: { firstName: "asc" },
+        });
+    
+        send(res).ok(teachers);
+  }
 }));
 
 teachersRouter.post("/", catchErrors(async (req, res) => {

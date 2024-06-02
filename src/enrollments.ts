@@ -17,11 +17,29 @@ const enrollmentsBodySchema = z.object({
 })
 
 enrollmentsRouter.get("/", catchErrors(async (req, res) => {
-    const enrollments = await db.enrollment.findMany({
-      orderBy: { studentId: "asc" },
-    });
+    
+    if(req.query.studentId) {
+        const enrollments = await db.enrollment.findMany({
+            where:{studentId: Number(req.query.studentId)}, orderBy: { studentId: "asc" },
+          });
+      
+          send(res).ok(enrollments);
 
-    send(res).ok(enrollments);
+    } else if(req.query.courseId) {
+        const enrollments = await db.enrollment.findMany({
+            where:{courseId: Number(req.query.courseId)}, orderBy: { studentId: "asc" },
+          });
+      
+          send(res).ok(enrollments);
+
+    } else {
+        const enrollments = await db.enrollment.findMany({
+            orderBy: { studentId: "asc" },
+          });
+      
+          send(res).ok(enrollments);
+
+    }
 }));
 
 enrollmentsRouter.post("/", catchErrors(async (req, res) => {

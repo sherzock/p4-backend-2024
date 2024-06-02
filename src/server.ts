@@ -8,6 +8,7 @@ import studentsRouter from "./students";
 import teachersRouter from "./teachers";
 import { defaultErrorHandler } from "./errors";
 import classroomsRouter from "./classrooms";
+import enrollmentsRouter from "./enrollments";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use("/courses", coursesRouter);
 app.use("/students", studentsRouter);
 app.use("/teachers", teachersRouter);
 app.use("/classrooms", classroomsRouter);
+app.use("/enrollments", enrollmentsRouter);
+
 
 
 app.use(defaultErrorHandler);

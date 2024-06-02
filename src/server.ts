@@ -4,6 +4,7 @@ import express from "express";
 import morgan from "morgan";
 
 import coursesRouter from "./courses";
+import studentsRouter from "./students";
 import { defaultErrorHandler } from "./errors";
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.use("/courses", coursesRouter);
+app.use("/students", studentsRouter);
 
 app.use(defaultErrorHandler);
 
